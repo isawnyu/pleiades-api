@@ -30,7 +30,8 @@
     <div id="main" role="main">
     <h1>Pleiades Places API</h1>
     <p>Chunks of read-only data we use in various applications are available in
-    JSON via HTTP.</p>
+    JSON via HTTP. We're supporting <a href="http://www.w3.org/TR/cors/">
+    Cross-Origin Resource Sharing</a> but not JSONP.</p>
 
     <ul>
       <li><a href="#status">Status</a></li>
@@ -74,15 +75,15 @@ $ curl -v http://api.pleiades.stoa.org/status
 
     <h3>Access Example</h3>
     <pre>
-$ curl -v http://pleiades.stoa.org/places/423025/json
+$ curl -v http://pleiades.stoa.org/places/423025/json | python -m json.tool
 > GET /places/423025/json HTTP/1.1
 > Host: pleiades.stoa.org
 > Accept: */*
-> 
+>
 < HTTP/1.1 200 OK
-< Date: Thu, 09 Feb 2012 18:10:16 GMT
+< Date: Wed, 14 Mar 2012 18:40:17 GMT
 < Content-Type: application/json
-< Content-Length: 1117
+< Access-Control-Allow-Origin: *
 < 
 {
     "bbox": [
@@ -148,12 +149,8 @@ $ curl -v http://pleiades.stoa.org/places/423025/json
     ], 
     "recent_changes": [
         {
-            "modified": "2012-02-04T23:39:53Z", 
-            "principal": "sgillies"
-        }, 
-        {
-            "modified": "2011-02-23T17:36:26Z", 
-            "principal": "thomase"
+            "modified": "2012-02-15T04:56:45Z", 
+            "principal": "admin"
         }
     ], 
     "reprPoint": [
@@ -163,7 +160,7 @@ $ curl -v http://pleiades.stoa.org/places/423025/json
     "title": "Roma", 
     "type": "FeatureCollection"
 }
-    </pre>
+</pre>
 
     <h3>Data Items</h3>
     <dt>id</dt>
